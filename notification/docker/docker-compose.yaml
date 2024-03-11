@@ -1,0 +1,33 @@
+#version: '3.7'
+#
+#networks:
+#  notification-service:
+#    driver: bridge
+#
+#services:
+#  notification-postgresql:
+#    restart: always
+#    image: postgres:12.2
+#    env_file:
+#      - .env
+#    environment:
+#      PGDATA: /var/lib/postgresql/notification_data
+#    ports:
+#      - ${POSTGRES_PORT}:5432
+#    networks:
+#      - notification-service
+#
+#  notification-service:
+#    restart: always
+#    depends_on:
+#      - notification-postgresql
+#    env_file:
+#      - .env
+#    build:
+#      context: ..
+#      dockerfile: docker/Dockerfile
+#    ports:
+#      - 8585:8585
+#    networks:
+#      - notification-service
+#
